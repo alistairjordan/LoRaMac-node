@@ -183,6 +183,18 @@ elseif(BOARD STREQUAL B-L072Z-LRWAN1)
 
     # Configure radio
     set(RADIO sx1276 CACHE INTERNAL "Radio sx1276 selected")
+
+elseif(BOARD STREQUAL spidev)
+    # Configure toolchain for spidev
+    set(LINKER_SCRIPT ${CMAKE_CURRENT_SOURCE_DIR}/boards/spidev/cmsis/arm-gcc/stm32l072xx_flash.ld)
+    include(stm32l0)
+
+    # Build platform specific board implementation
+    add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/boards/spidev)
+
+    # Configure radio
+    set(RADIO sx1276 CACHE INTERNAL "Radio sx1276 selected")
+
 endif()
 
 #---------------------------------------------------------------------------------------
